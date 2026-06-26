@@ -1,19 +1,27 @@
 import axios from "axios";
-import { BookInfo } from "./components/book-info";
-import { UserInfo } from "./components/user-info";
+import React, { useEffect } from "react";
+import { useState } from "react";
 
-function App() {
+export const ResourceLoader = ({ resourceUrl, resourceName, children }) => {
+    const [resource, setResource] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            const response = await axios.get(resourceUrl);
+            setResource(response.data);
+        })();
+    }, [resourceUrl]);
+
     return (
         <>
-            <ResourceLoader resourceUrl={"/users/1"} resourceName={"user"}>
-                <UserInfo />
-            </ResourceLoader>
-
-            <ResourceLoader resourceUrl={"/books/1"} resourceName={"book"}>
-                <BookInfo />
-            </ResourceLoader>
+            {React.Children.map(children, (child) => {
+                if (React.isValidElement(child)) {
+                    return React.cloneElement(child, {
+                        [resourceName]: resource,
+                    });
+                }
+                return child;
+            })}
         </>
     );
-}
-
-export default App;
+};
