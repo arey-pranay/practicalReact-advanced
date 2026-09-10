@@ -1,6 +1,6 @@
 ## Bonus:
 
-### 1. Instead of clickable <div>
+    ### 1. Instead of clickable div:
 
 #### Key Idea
 
