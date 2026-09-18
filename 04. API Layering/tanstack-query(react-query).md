@@ -457,7 +457,6 @@ useQuery({
 ```
 
 For a specific user:
-
 JavaScript
 
 ```
