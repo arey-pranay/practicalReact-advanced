@@ -1519,7 +1519,6 @@ console.error("API request failed", error);
 ```
 
 → developer-facing diagnostics; show a safe user-facing message separately.
-
 ---
 
 ## One-line interview revision
